@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+
+	<package name="web" namespace="/" extends="json-default">
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+
+		<action name="hello">
+			<result>/hello.jsp</result>
+		</action>
+
+		<action name="dbConnect"
+			class="com.example.util.DbConnectAction" method="connectdataBase">
+			<result type="json" />
+		</action>
+	</package>
+
+
+	<!-- api packages -->
+
+	<package name="api" namespace="/api" extends="json-default">
+		<action name="productlist"
+			class="com.test.apis.ProductListAction" method="fetchProductList">
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<action name="create-product"
+			class="com.test.apis.AddProductAction" method="createProduct">
+
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />   <!-- ✅ REQUIRED -->
+			<result name="error" type="json" />
+
+		</action>
+
+
+		<action name="get-product-id"
+			class="com.action.layer.GetProductDataByID" method="productDataById">
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />   <!-- ✅ REQUIRED -->
+			<result name="error" type="json" />
+
+		</action>
+
+
+		<action name="get-order-list"
+			class="com.test.apis.GetOrderListAction" method="getOrderList">
+
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json" />
+
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+
+		<action name="add-order"
+			class="com.test.apis.OrderProductAction" method="addOrder">
+
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json" />
+
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<action name="delete-order"
+			class="com.test.apis.DeleteOrderAction" method="deleteOrder">
+
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json" />
+
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+
+
+		<action name="create-product"
+			class="com.test.apis.AddProductAction" method="createProduct">
+
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />   <!-- ✅ REQUIRED -->
+			<result name="error" type="json" />
+
+		</action>
+
+
+		<!-- GET PRODUCT LIST -->
+		<action name="get-product-list"
+			class="com.action.layer.ProductListAction" method="getProductList">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json" />
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<!-- DELETE PRODUCT -->
+		<action name="delete-product"
+			class="com.action.layer.DeleteProductAction" method="deleteProduct">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json" />
+			<result name="success" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+
+		<!-- ADD PRODUCT -->
+		<action name="add-product"
+			class="com.action.layer.AddProductAction" method="createProduct">
+
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="json" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<!-- UPDATE PRODUCT -->
+		<action name="update-product"
+			class="com.action.layer.UpdateProductAction" method="updateProduct">
+
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />
+			<result name="error" type="json" />
+
+		</action>
+
+
+		<!-- GET BRAND LIST -->
+		<action name="get-brands"
+			class="com.action.layer.GetBrandListAction" method="getBrandList">
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />   <!-- ✅ REQUIRED -->
+			<result name="error" type="json" />
+
+		</action>
+
+		<action name="get-category"
+			class="com.action.layer.GetCategoryListAction"
+			method="getCategoryList">
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />   <!-- ✅ REQUIRED -->
+			<result name="error" type="json" />
+
+		</action>
+
+
+		<!-- CREATE ORDERS -->
+		<action name="create-order"
+			class="com.action.layer.CreateOrderAction" method="createOrder">
+
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<!-- ADD ORDERS -->
+		<action name="add-orders"
+			class="com.action.layer.AddOrderAction" method="addOrders">
+
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />
+			<result name="error" type="json" />
+		</action>
+
+		<!-- ADD ORDERS -->
+		<action name="get-orders"
+			class="com.action.layer.GetOrderListAction" method="orderlistMethod">
+
+			<interceptor-ref name="json" />
+			<interceptor-ref name="defaultStack" />
+
+			<result name="success" type="json" />
+			<result name="input" type="json" />
+			<result name="error" type="json" />
+
+		</action>
+
+
+	</package>
+
+
+
+</struts>
